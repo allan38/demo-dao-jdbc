@@ -1,5 +1,6 @@
 package application;
 
+import java.util.Date;
 import java.util.List;
 
 import model.dao.DaoFactory;
@@ -11,12 +12,8 @@ public class Program {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-
-		
 		
 		SellerDao sd = DaoFactory.createSellerDao();
-	
-		
 	
 		System.out.println("===== TESTE FIND BY ID =====\n\n");
 		
@@ -37,6 +34,11 @@ public class Program {
 			System.out.println(sel);
 		}
 		
+		System.out.println("\n\n===== TESTE FIND ALL =====\n\n");
+		
+		Seller seller = new Seller(null, "Junior", "junior@gmail.com", new Date(), 3000.0, obj);
+		sd.insert(seller);
+		System.out.println("seller Id: " + seller.getId());
 	}
 
 }
