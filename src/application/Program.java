@@ -18,16 +18,23 @@ public class Program {
 	
 		
 	
-		System.out.println("===== TESTE FIND BY ID =====");
+		System.out.println("===== TESTE FIND BY ID =====\n\n");
 		
 		System.out.println(sd.findById(2));
 		
-		System.out.println("===== TESTE FIND BY DEPARTMENT =====");
+		System.out.println("\n\n===== TESTE FIND BY DEPARTMENT =====\n\n");
 		
 		Department obj = new Department(2, null);
 		List<Seller> sellers = sd.findByDepartment(obj);
 		for(Seller sel : sellers) {
-			System.out.println("List of Sellers: " + sel );
+			System.out.println(sel);
+		}
+		
+		System.out.println("\n\n===== TESTE FIND ALL =====\n\n");
+		
+		List<Seller> sellers1 = sd.findall();
+		for(Seller sel : sellers1) {
+			System.out.println(sel);
 		}
 		
 	}
