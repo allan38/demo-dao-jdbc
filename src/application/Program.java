@@ -21,7 +21,7 @@ public class Program {
 	//	System.out.println(obj);
 		
 	//	System.out.println(seller);
-	
+	System.out.println("===== TESTE FIND BY ID =====");
 		
 		System.out.println(sd.findById(2));
 		

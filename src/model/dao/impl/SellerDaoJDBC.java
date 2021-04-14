@@ -43,9 +43,7 @@ public class SellerDaoJDBC implements SellerDao {
 
 		PreparedStatement st = null;
 		ResultSet rs = null;
-
 		try {
-
 			st = conn.prepareStatement("SELECT seller.*,department.Name as DepName \r\n" + 
 					"FROM seller INNER JOIN department \r\n" + 
 					"ON seller.DepartmentId = department.Id \r\n" + 
@@ -55,28 +53,29 @@ public class SellerDaoJDBC implements SellerDao {
 			rs = st.executeQuery();
 			
 			if(rs.next()) {
-				Department dep = new Department();
-				dep.setId(rs.getInt("DepartmentId"));
-				dep.setName(rs.getString("DepName"));
-				Seller obj = new Seller(rs.getInt("Id"), rs.getString("Name"), rs.getString("Email"), rs.getDate("BirthDate"), rs.getDouble("BaseSalary"), dep);
-				
+				Department dep = instantiateDepartment(rs);
+				Seller obj = instatiateDepartment(rs, dep);
 				return obj;
-				
 			}
-			
 			return null;
-			
 		}catch(SQLException e) {
 			throw new DbException(e.getMessage());
 		}finally {
 			DB.closeResultSet(rs);
 			DB.closeStatement(st);
 		}	
-
-
+		
 	}
 
+	private Seller instatiateDepartment(ResultSet rs, Department dep) throws SQLException {
+		Seller seller = new Seller(rs.getInt("Id"), rs.getString("Name"), rs.getString("Email"), rs.getDate("BirthDate"), rs.getDouble("BaseSalary"), dep);
+		return seller;
+	}
 
+	private Department instantiateDepartment(ResultSet rs) throws SQLException {
+		Department dep = new Department( rs.getInt("DepartmentId"), rs.getString("DepName"));
+		return dep;
+	}
 
 	@Override
 	public List<Seller> findall() {
