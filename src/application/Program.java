@@ -34,11 +34,15 @@ public class Program {
 			System.out.println(sel);
 		}
 		
-		System.out.println("\n\n===== TESTE FIND ALL =====\n\n");
+		System.out.println("\n\n===== TESTE INSERT =====\n\n");
 		
-		Seller seller = new Seller(null, "Junior", "junior@gmail.com", new Date(), 3000.0, obj);
-		sd.insert(seller);
+		Seller seller = new Seller(18, "Rodrigo", "rodrigo@gmail.com", new Date(), 4000.0, obj);
+		//sd.insert(seller);
 		System.out.println("seller Id: " + seller.getId());
+		
+		System.out.println("\n\n===== TESTE UPDATE =====\n\n");
+		
+		sd.update(seller);
 	}
 
 }
